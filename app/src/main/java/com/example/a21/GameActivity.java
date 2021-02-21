@@ -15,7 +15,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     boolean playerTurn = false;
     int currentValue = 0;
     TextView currentValueView, winLoseView;
-    Button buttonArray[]; // array of the number input buttons
+    Button[] buttonArray; // array of the number input buttons
     Button submitButton, quitButton, playAgainButton;
     int selectedInput = -1;
     String firstTurnPlayer;
@@ -48,7 +48,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
         // Create the computer player
         int compPlayerDifficulty = getIntent().getIntExtra("comp_player_difficulty", 3);
-        this.computerPlayer = new ComputerPlayer(compPlayerDifficulty, targetValue, numbersPerTurn);
+        computerPlayer = new ComputerPlayer(compPlayerDifficulty, targetValue, numbersPerTurn);
 
         removeUnusedButtons(); // Get rid of input buttons over numbersPerTurn
         createSubmitClickEvent(); // On click listener for submit button
@@ -163,7 +163,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void makeComputerTurn(){
-        final int compChoice = this.computerPlayer.makeMove(this.currentValue); // get move from computer player
+        final int compChoice = computerPlayer.makeMove(this.currentValue); // get move from computer player
         currentValue += compChoice;
         if(checkGameOver()){
             return;
